@@ -53,6 +53,7 @@
             />
 
         <TextBox
+            x:Name="UsernameTextBox"
             Height="20"
             Width="100"
             Grid.Column="2"
@@ -60,6 +61,7 @@
         />
 
         <TextBox
+            x:Name="IPAdressTextBox"
             Height="20"
             Width="100"
             Grid.Column="2"
@@ -67,13 +69,14 @@
         />
 
         <Button
+            x:Name="SignInButton"
             Height="20"
             Width="50"
             Grid.Column="2"
             Grid.Row="4"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
-            Content="Sign in"
+            Content="Sign in" Click="Button_Click"
             />
     </Grid>
 </Window>
