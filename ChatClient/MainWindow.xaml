@@ -5,8 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="QuickChatClient" Height="600" Width="800">
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <TextBox
+            x:Name="MessageTextBox"
+            Grid.Column="1"
+            Grid.Row="3"
+            Height="100"
+            Width="450"
+            Text="{Binding Path = Message}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center" />
+
+        <Button
+            x:Name="SendButton"
+            Grid.Column="3"
+            Grid.Row="2"
+            Height="40"
+            Width="80"
+            Command="{Binding Path=SendMessage}" CommandParameter="RoomString,Message" 
+            Content="Send"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center" Click="SendButton_Click" 
+            
+            />
+
+        <TextBlock
+            x:Name="ChatTextBlock"
+            Grid.Row="1"
+            Grid.Column="1"
+            Height="280"
+            Width="450"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="{Binding RoomString}"
+            
+            />
+
+        <Label
+            Content="Rooms: "
+            Grid.Column="0"
+            Grid.Row="0"
+            FontSize="18"
+            FontWeight="Bold"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            
+            />
+
+        <ListView 
+            Margin="10" 
+            Grid.Column="0"
+            Grid.Row="1"
+            Grid.RowSpan="1">
+
+            <ListViewItem >Room1</ListViewItem>
+            <ListViewItem >Room2</ListViewItem>
+            <ListViewItem>Room3</ListViewItem>
+        </ListView>
+        <Button
+            x:Name="LogOutButton"
+            Height="40"
+            Width="80"
+            Content="Logout"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            
+            Margin="35,33,35,27" Grid.Column="2" Click="LogOutButton_Click"
+            
+            />
+
     </Grid>
 </Window>

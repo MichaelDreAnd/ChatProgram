@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatHost"
         mc:Ignorable="d"
-        Title="QuickChat" Height="600" Width="800">
+        Title="QuickChatHost" Height="600" Width="800">
    
     <Grid>
         <Grid.ColumnDefinitions>

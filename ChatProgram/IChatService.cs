@@ -12,8 +12,6 @@ namespace ChatProgram
     public interface IChatService
     {
         
-       
-
         [OperationContract]
         void Connect(string UserName, string IpAdress);
 
@@ -21,7 +19,10 @@ namespace ChatProgram
         void Disconnect(string UserName);
 
         [OperationContract]
-        void SendMessage(string message, ref string roomstring);
+        void SendMessage(string message);
+
+        /*[OperationContract]
+        void SendMessage(string message, ref string roomstring);*/
 
         [OperationContract]
         void ReceiveMessage(string message);

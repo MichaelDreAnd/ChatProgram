@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatClient.ServiceReference1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,24 @@ namespace ChatClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Step 1: Create an instance of the WCF proxy.
+        ChatServiceClient client = new ChatServiceClient();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Step 2: Call the service operations.
+            client.SendMessage(MessageTextBox.Text);
+        }
+
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Step 3: Closing the client gracefully closes the connection and cleans up resources.
+            client.Close();
+            Close();
         }
     }
 }

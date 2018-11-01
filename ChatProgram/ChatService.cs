@@ -26,11 +26,16 @@ namespace ChatProgram
             
         }
 
-        public void SendMessage(string message,ref string roomstring )
+        public void SendMessage(string message)
+        {
+
+            message += message;
+        }
+        /*public void SendMessage(string message,ref string roomstring )
         {
 
             roomstring += message;
-        }
+        }*/
 
         
     }
