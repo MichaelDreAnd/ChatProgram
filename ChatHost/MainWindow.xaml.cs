@@ -23,6 +23,7 @@ namespace ChatHost
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         // Step 1 of the address configuration procedure: Create a URI to serve as the base address.
         static Uri baseAddress = new Uri("http://localhost:8000/ChatProgram/ChatService");
 
@@ -31,7 +32,7 @@ namespace ChatHost
         public MainWindow()
         {
             InitializeComponent();
-            
+           
            
             try
             {
