@@ -23,15 +23,15 @@ namespace ChatHost
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Step 1 of the address configuration procedure: Create a URI to serve as the base address.
+        static Uri baseAddress = new Uri("http://localhost:8000/ChatProgram/ChatService");
+
+        // Step 2 of the hosting procedure: Create ServiceHost
+        static ServiceHost selfHost = new ServiceHost(typeof(ChatService), baseAddress);
         public MainWindow()
         {
             InitializeComponent();
-            // Step 1 of the address configuration procedure: Create a URI to serve as the base address.
-            Uri baseAddress = new Uri("http://localhost:8000/ChatProgram/ChatService");
-
-            // Step 2 of the hosting procedure: Create ServiceHost
-            ServiceHost selfHost = new ServiceHost(typeof(ChatService), baseAddress);
-
+           
             try
             {
                 // Step 3 of the hosting procedure: Add a service endpoint.
@@ -44,16 +44,20 @@ namespace ChatHost
 
                 // Step 5 of the hosting procedure: Start (and then stop) the service.
                 selfHost.Open();
-                Console.WriteLine("heeey");
 
-                // Close the ServiceHostBase to shutdown the service.
-                selfHost.Close();
             }
             catch (CommunicationException ce)
             {
-                Console.WriteLine("An exception occurred: {0}", ce.Message);
+                //Console.WriteLine("An exception occurred: {0}", ce.Message);
                 selfHost.Abort();
             }
+        }
+
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Close the ServiceHostBase to shutdown the service.
+            selfHost.Close();
+            Close();
         }
     }
 }

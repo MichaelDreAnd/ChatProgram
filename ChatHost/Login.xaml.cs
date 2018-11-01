@@ -22,6 +22,13 @@ namespace ChatHost
         public Login()
         {
             InitializeComponent();
+
+        }
+
+        private void SignInButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
         }
     }
 }

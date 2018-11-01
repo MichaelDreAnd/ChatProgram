@@ -104,9 +104,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ChatProgram\ChatProgram.csproj">
       <Project>{5077ad93-d396-4fa5-b62d-dcabcd37df19}</Project>
       <Name>ChatProgram</Name>

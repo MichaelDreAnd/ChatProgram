@@ -76,7 +76,7 @@
             Grid.Row="4"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
-            Content="Sign in" Click="Button_Click"
+            Content="Sign in" Click="SignInButton_Click"
             />
     </Grid>
 </Window>
