@@ -19,7 +19,7 @@ namespace ChatProgram
         void Disconnect(string UserName);
 
         [OperationContract]
-        void SendMessage(string message);
+        void SendMessage(string message, ref string roomstring);
 
         [OperationContract]
         void ReceiveMessage(string message);

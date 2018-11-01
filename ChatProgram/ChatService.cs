@@ -18,17 +18,20 @@ namespace ChatProgram
 
         public void Disconnect(string UserName)
         {
-            throw new NotImplementedException();
+            Environment.Exit(1);
         }
 
         public void ReceiveMessage(string message)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void SendMessage(string message)
+        public void SendMessage(string message,ref string roomstring )
         {
-            throw new NotImplementedException();
+
+            roomstring += message;
         }
+
+        
     }
 }

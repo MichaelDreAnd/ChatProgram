@@ -10,6 +10,9 @@ namespace ChatHost
 {
     class Room :  INotifyPropertyChanged
     {
+
+        public string RoomString { get; set; }
+
         public string Message { get; set; }
 
         public List<User> UserList { get; set; }

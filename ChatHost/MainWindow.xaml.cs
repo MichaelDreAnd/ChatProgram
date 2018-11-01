@@ -31,6 +31,7 @@ namespace ChatHost
         public MainWindow()
         {
             InitializeComponent();
+            
            
             try
             {
