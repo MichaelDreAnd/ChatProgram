@@ -24,9 +24,9 @@
             Grid.Row="3"
             Height="100"
             Width="450"
-            Text="Write something..."
+            Text="{Binding Path = MessageInput}"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Center" TextChanged="MessageTextBox_TextChanged"
             />
 
         <Button
@@ -35,9 +35,10 @@
             Grid.Row="2"
             Height="40"
             Width="80"
+            Command="{Binding Path=SendMessage}"
             Content="Send"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Center" Click="SendButton_Click"
             
             />
 
@@ -49,6 +50,7 @@
             Width="450"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
+            Text="{Binding ListMessages}"
             />
 
         <Label

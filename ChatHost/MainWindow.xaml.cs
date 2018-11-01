@@ -20,9 +20,28 @@ namespace ChatHost
     /// </summary>
     public partial class MainWindow : Window
     {
+        MessageViewModel messageViewModel = new MessageViewModel();
+        public string text;
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = messageViewModel;
+        }
+
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> test = new List<string>();
+            test.Add(text);
+            foreach (var item in test)
+            {
+                ChatTextBlock.Text = item;
+            }
+            
+        }
+
+        private void MessageTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            text = messageViewModel.MessageInput;
         }
     }
 }
