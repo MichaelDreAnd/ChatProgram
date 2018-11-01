@@ -74,6 +74,17 @@
             <ListViewItem >Room2</ListViewItem>
             <ListViewItem>Room3</ListViewItem>
         </ListView>
+        <Button
+            x:Name="LogOutButton"
+            Height="40"
+            Width="80"
+            Content="Logout"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            
+            Margin="35,33,35,27" Grid.Column="2" Click="LogOutButton_Click"
+            
+            />
 
     </Grid>
 </Window>

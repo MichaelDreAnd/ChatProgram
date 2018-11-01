@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ChatProgram;
 
 namespace ChatHost
 {
@@ -20,28 +23,41 @@ namespace ChatHost
     /// </summary>
     public partial class MainWindow : Window
     {
-        MessageViewModel messageViewModel = new MessageViewModel();
-        public string text;
+        // Step 1 of the address configuration procedure: Create a URI to serve as the base address.
+        static Uri baseAddress = new Uri("http://localhost:8000/ChatProgram/ChatService");
+
+        // Step 2 of the hosting procedure: Create ServiceHost
+        static ServiceHost selfHost = new ServiceHost(typeof(ChatService), baseAddress);
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = messageViewModel;
-        }
-
-        private void SendButton_Click(object sender, RoutedEventArgs e)
-        {
-            List<string> test = new List<string>();
-            test.Add(text);
-            foreach (var item in test)
+           
+            try
             {
-                ChatTextBlock.Text = item;
+                // Step 3 of the hosting procedure: Add a service endpoint.
+                selfHost.AddServiceEndpoint(typeof(IChatService), new WSHttpBinding(), "ChatService");
+
+                // Step 4 of the hosting procedure: Enable metadata exchange.
+                ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
+                smb.HttpGetEnabled = true;
+                selfHost.Description.Behaviors.Add(smb);
+
+                // Step 5 of the hosting procedure: Start (and then stop) the service.
+                selfHost.Open();
+
             }
-            
+            catch (CommunicationException ce)
+            {
+                //Console.WriteLine("An exception occurred: {0}", ce.Message);
+                selfHost.Abort();
+            }
         }
 
-        private void MessageTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
-            text = messageViewModel.MessageInput;
+            // Close the ServiceHostBase to shutdown the service.
+            selfHost.Close();
+            Close();
         }
     }
 }
