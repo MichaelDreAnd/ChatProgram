@@ -27,13 +27,16 @@ namespace ChatClient
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = client;
+            Room room = new Room();
+            DataContext = room;
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             // Step 2: Call the service operations.
-            client.SendMessage(MessageTextBox.Text);
+            // To add new line
+            ChatTextBlock.Inlines.Add(new Run { Text = client.SendMessage(MessageTextBox.Text)});
+            ChatTextBlock.Inlines.Add(new LineBreak());
         }
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)

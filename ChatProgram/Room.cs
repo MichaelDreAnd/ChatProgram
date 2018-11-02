@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace ChatProgram
 {
-    class Room :  INotifyPropertyChanged
+    public class Room :  INotifyPropertyChanged
     {
+
         private string _roomString;
         [DataMember]
         public string RoomString {
