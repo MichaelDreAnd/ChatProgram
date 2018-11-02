@@ -23,6 +23,7 @@ namespace ChatProgram
         public MainWindow()
         {
             InitializeComponent();
+            Close();
         }
     }
 }
