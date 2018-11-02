@@ -55,7 +55,7 @@ namespace ChatHost
             }
         }
 
-        private void LogOutButton_Click(object sender, RoutedEventArgs e)
+        private void ShutDownButton_Click(object sender, RoutedEventArgs e)
         {
             // Close the ServiceHostBase to shutdown the service.
             selfHost.Close();
