@@ -129,5 +129,11 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChatProgram\ChatProgram.csproj">
+      <Project>{5077ad93-d396-4fa5-b62d-dcabcd37df19}</Project>
+      <Name>ChatProgram</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

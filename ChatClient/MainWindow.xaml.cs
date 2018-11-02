@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ChatProgram;
 
 namespace ChatClient
 {
@@ -26,12 +27,13 @@ namespace ChatClient
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = client;
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             // Step 2: Call the service operations.
-            ChatTextBlock.Text = client.SendMessage(MessageTextBox.Text);
+            client.SendMessage(MessageTextBox.Text);
         }
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)

@@ -6,15 +6,22 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using ChatProgram;
 
-namespace ChatHost
+
+namespace ChatProgram
 {
     class Room :  INotifyPropertyChanged
     {
-        
+        private string _roomString;
         [DataMember]
-        public string RoomString { get; set; }
+        public string RoomString {
+            get { return _roomString; }
+
+            set { _roomString = value;
+                NotifyPropertyChanged();
+                 }
+        }
+
       
         private string _message;
         [DataMember]
