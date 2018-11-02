@@ -39,10 +39,10 @@ namespace ChatProgram
 
         
         /*public void SendMessage(string message,ref string roomstring )
-{
+        {
 
-   roomstring += message;
-}*/
+        roomstring += message;
+        }*/
 
 
     }

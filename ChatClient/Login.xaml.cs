@@ -11,24 +11,29 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ChatProgram;
 
-namespace ChatHost
+namespace ChatClient
 {
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
     public partial class Login : Window
     {
+        User user = new User();
         public Login()
         {
             InitializeComponent();
-
         }
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
+            user.UserName = UsernameTextBox.Text;
+            MainWindow mw = new MainWindow(user);
             mw.Show();
+            // Close login screen
+            Close();
         }
     }
 }
+  

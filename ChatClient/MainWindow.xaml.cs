@@ -24,19 +24,24 @@ namespace ChatClient
     {
         //Step 1: Create an instance of the WCF proxy.
         ChatServiceClient client = new ChatServiceClient();
-        public MainWindow()
+        private User user;
+        public MainWindow(User user)
         {
             InitializeComponent();
             Room room = new Room();
             DataContext = room;
+            this.user = user;
+            
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             // Step 2: Call the service operations.
             // To add new line
-            ChatTextBlock.Inlines.Add(new Run { Text = client.SendMessage(MessageTextBox.Text)});
+            ChatTextBlock.Inlines.Add(new Run { Text = user.UserName + ": " + client.SendMessage(MessageTextBox.Text)});
             ChatTextBlock.Inlines.Add(new LineBreak());
+            // Clears the messagebox
+            MessageTextBox.Text = "";
         }
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
