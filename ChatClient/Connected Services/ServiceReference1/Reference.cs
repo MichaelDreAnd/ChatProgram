@@ -28,10 +28,10 @@ namespace ChatClient.ServiceReference1 {
         System.Threading.Tasks.Task DisconnectAsync(string UserName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        void SendMessage(string message);
+        string SendMessage(string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        System.Threading.Tasks.Task SendMessageAsync(string message);
+        System.Threading.Tasks.Task<string> SendMessageAsync(string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ReceiveMessage", ReplyAction="http://tempuri.org/IChatService/ReceiveMessageResponse")]
         void ReceiveMessage(string message);
@@ -83,11 +83,11 @@ namespace ChatClient.ServiceReference1 {
             return base.Channel.DisconnectAsync(UserName);
         }
         
-        public void SendMessage(string message) {
-            base.Channel.SendMessage(message);
+        public string SendMessage(string message) {
+            return base.Channel.SendMessage(message);
         }
         
-        public System.Threading.Tasks.Task SendMessageAsync(string message) {
+        public System.Threading.Tasks.Task<string> SendMessageAsync(string message) {
             return base.Channel.SendMessageAsync(message);
         }
         

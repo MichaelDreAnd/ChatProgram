@@ -31,7 +31,7 @@ namespace ChatClient
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             // Step 2: Call the service operations.
-            client.SendMessage(MessageTextBox.Text);
+            ChatTextBlock.Text = client.SendMessage(MessageTextBox.Text);
         }
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
