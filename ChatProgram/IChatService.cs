@@ -8,7 +8,7 @@ using System.Text;
 namespace ChatProgram
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IChatService" in both code and config file together.
-    [ServiceContract]
+    [ServiceContract(SessionMode=SessionMode.Required, CallbackContract=typeof(IChatServiceDuplexCallback))]
     public interface IChatService
     {
         
@@ -24,5 +24,10 @@ namespace ChatProgram
         [OperationContract]
         string ReceiveMessage(string message);
 
+    }
+    public interface IChatServiceDuplexCallback
+    {
+        [OperationContract]
+        string Message(string message);
     }
 }

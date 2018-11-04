@@ -12,8 +12,15 @@ using ChatProgram;
 namespace ChatProgram
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "ChatService" in both code and config file together.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class ChatService : IChatService
     {
+        IChatServiceDuplexCallback Callback = null;
+
+        public ChatService()
+        {
+            Callback = OperationContext.Current.GetCallbackChannel<IChatServiceDuplexCallback>();
+        }
         public string SendMessage(string message)
         {
             return message;
@@ -33,6 +40,14 @@ namespace ChatProgram
         {
             Environment.Exit(1);
         }
+
+        //IChatServiceDuplexCallback Callback
+        //{
+        //    get
+        //    {
+        //        return OperationContext.Current.GetCallbackChannel<IChatServiceDuplexCallback>();
+        //    }
+        //}
     }
 }
 

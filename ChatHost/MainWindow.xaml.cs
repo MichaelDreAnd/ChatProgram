@@ -37,7 +37,7 @@ namespace ChatHost
             try
             {
                 // Step 3 of the hosting procedure: Add a service endpoint.
-                selfHost.AddServiceEndpoint(typeof(IChatService), new WSHttpBinding(), "ChatService");
+                selfHost.AddServiceEndpoint(typeof(IChatService), new WSDualHttpBinding(), "ChatService");
 
                 // Step 4 of the hosting procedure: Enable metadata exchange.
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
