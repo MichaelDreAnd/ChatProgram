@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="66696ab5-9d54-4b67-8958-983e2dd7a635" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7dec88b5-0539-4d32-b454-d01793fb50a0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -20,13 +20,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.113:8000/ChatProgram/ChatService" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8000/ChatProgram/ChatService" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ChatService.xsd" MetadataType="Schema" ID="842cecf5-94fb-4306-aedd-67c2f5f585df" SourceId="1" SourceUrl="http://192.168.1.113:8000/ChatProgram/ChatService?xsd=xsd0" />
-    <MetadataFile FileName="ChatService.wsdl" MetadataType="Wsdl" ID="cbbf9758-36ca-415a-a5d4-8f244b87226c" SourceId="1" SourceUrl="http://192.168.1.113:8000/ChatProgram/ChatService?wsdl" />
-    <MetadataFile FileName="ChatService1.xsd" MetadataType="Schema" ID="c139bea1-9731-405d-acf5-77fabbe0760c" SourceId="1" SourceUrl="http://192.168.1.113:8000/ChatProgram/ChatService?xsd=xsd1" />
-    <MetadataFile FileName="ChatService.disco" MetadataType="Disco" ID="038df30a-e79c-4068-8315-e4dc078d131f" SourceId="1" SourceUrl="http://192.168.1.113:8000/ChatProgram/ChatService?disco" />
+    <MetadataFile FileName="ChatService.xsd" MetadataType="Schema" ID="f396b595-aa35-4ce8-958f-b42fa920b1c4" SourceId="1" SourceUrl="http://localhost:8000/ChatProgram/ChatService?xsd=xsd0" />
+    <MetadataFile FileName="ChatService.wsdl" MetadataType="Wsdl" ID="b69c576b-c35d-463b-af79-c5aa9f168070" SourceId="1" SourceUrl="http://localhost:8000/ChatProgram/ChatService?wsdl" />
+    <MetadataFile FileName="ChatService1.xsd" MetadataType="Schema" ID="f95f6a4d-1b17-4872-a783-aae989a2fedc" SourceId="1" SourceUrl="http://localhost:8000/ChatProgram/ChatService?xsd=xsd1" />
+    <MetadataFile FileName="ChatService.disco" MetadataType="Disco" ID="f7d07628-2b90-44d5-9339-0f0473ee716e" SourceId="1" SourceUrl="http://localhost:8000/ChatProgram/ChatService?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -335,8 +335,8 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://192.168.1.113:8000/ChatProgram/ChatService?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://192.168.1.113:8000/ChatProgram/ChatService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8000/ChatProgram/ChatService?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8000/ChatProgram/ChatService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IChatService_Connect_InputMessage">
@@ -452,9 +452,9 @@
   </wsdl:binding>
   <wsdl:service name="ChatService">
     <wsdl:port name="WSDualHttpBinding_IChatService" binding="tns:WSDualHttpBinding_IChatService">
-      <soap12:address location="http://192.168.1.113:8000/ChatProgram/ChatService" />
+      <soap12:address location="http://localhost:8000/ChatProgram/ChatService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://192.168.1.113:8000/ChatProgram/ChatService</wsa10:Address>
+        <wsa10:Address>http://localhost:8000/ChatProgram/ChatService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Dns>localhost</Dns>
         </Identity>

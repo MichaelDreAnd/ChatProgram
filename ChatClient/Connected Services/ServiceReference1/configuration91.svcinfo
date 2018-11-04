@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="l/Yl5yiYkO6odbTBQCxpQoqVGLI=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="AvinwQThgjGkhEJbv3TtX5ZZnfI=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsDualHttpBinding" name="WSDualHttpBinding_IChatService">
       <properties>
@@ -97,10 +97,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSDualHttpBinding_IChatService" contract="ServiceReference1.IChatService" bindingType="wsDualHttpBinding" address="http://192.168.1.113:8000/ChatProgram/ChatService" bindingConfiguration="WSDualHttpBinding_IChatService">
+    <endpoint name="WSDualHttpBinding_IChatService" contract="ServiceReference1.IChatService" bindingType="wsDualHttpBinding" address="http://localhost:8000/ChatProgram/ChatService" bindingConfiguration="WSDualHttpBinding_IChatService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://192.168.1.113:8000/ChatProgram/ChatService</serializedValue>
+          <serializedValue>http://localhost:8000/ChatProgram/ChatService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
