@@ -101,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChatProgram\ChatProgram.csproj">
-      <Project>{5077ad93-d396-4fa5-b62d-dcabcd37df19}</Project>
+      <Project>{8ea8dd99-eb36-4ddb-ade4-5c96540176fc}</Project>
       <Name>ChatProgram</Name>
     </ProjectReference>
   </ItemGroup>

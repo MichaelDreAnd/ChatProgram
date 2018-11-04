@@ -50,7 +50,7 @@ namespace ChatHost
             }
             catch (CommunicationException ce)
             {
-                MessageBox.Show("An exception occurred: {0}", ce.Message);
+                //MessageBox.Show("An exception occurred: {0}", ce.Message);
                 selfHost.Abort();
             }
         }

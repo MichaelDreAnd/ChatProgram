@@ -133,12 +133,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChatProgram\ChatProgram.csproj">
-      <Project>{5077ad93-d396-4fa5-b62d-dcabcd37df19}</Project>
-      <Name>ChatProgram</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -149,6 +143,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChatProgram\ChatProgram.csproj">
+      <Project>{8ea8dd99-eb36-4ddb-ade4-5c96540176fc}</Project>
+      <Name>ChatProgram</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
