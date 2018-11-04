@@ -10,21 +10,11 @@ using System.Threading.Tasks;
 
 namespace ChatProgram
 {
+    [DataContract]
     public class Room :  INotifyPropertyChanged
     {
-
-        private string _roomString;
-        [DataMember]
-        public string RoomString {
-            get { return _roomString; }
-
-            set { _roomString = value;
-                NotifyPropertyChanged();
-                 }
-        }
-
-      
         private string _message;
+    
         [DataMember]
         public string Message
         {

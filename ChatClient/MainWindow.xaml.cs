@@ -23,27 +23,34 @@ namespace ChatClient
     public partial class MainWindow : Window
     {
         //Step 1: Create an instance of the WCF proxy.
-        ChatServiceClient client = new ChatServiceClient();
+        ChatServiceClient client = new ChatServiceClient(); 
         private User user;
+
         public MainWindow(User user)
         {
             InitializeComponent();
-            Room room = new Room();
-            DataContext = room;
-            this.user = user;
-            
+            this.user = user;           
         }
-
-        private void SendButton_Click(object sender, RoutedEventArgs e)
+        private void Send()
         {
-            // Step 2: Call the service operations.
-            // To add new line
-            ChatTextBlock.Inlines.Add(new Run { Text = user.UserName + ": " + client.SendMessage(MessageTextBox.Text)});
+            // Step 2: Call the service operations --> client.SendMessage.
+            ChatTextBlock.Inlines.Add(new Run { Text = user.UserName + ": " + client.SendMessage(MessageTextBox.Text) });
+            // To add a new line each time a message is send
             ChatTextBlock.Inlines.Add(new LineBreak());
             // Clears the messagebox
             MessageTextBox.Text = "";
         }
-
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            Send();
+        }
+        private void SendEnterKey(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Send();
+            }
+        }
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             //Step 3: Closing the client gracefully closes the connection and cleans up resources.

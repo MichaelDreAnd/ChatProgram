@@ -44,13 +44,13 @@ namespace ChatHost
                 smb.HttpGetEnabled = true;
                 selfHost.Description.Behaviors.Add(smb);
 
-                // Step 5 of the hosting procedure: Start (and then stop) the service.
+                // Step 5 of the hosting procedure: Start the service.
                 selfHost.Open();
 
             }
             catch (CommunicationException ce)
             {
-                //Console.WriteLine("An exception occurred: {0}", ce.Message);
+                MessageBox.Show("An exception occurred: {0}", ce.Message);
                 selfHost.Abort();
             }
         }

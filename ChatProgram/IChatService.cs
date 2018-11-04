@@ -21,11 +21,8 @@ namespace ChatProgram
         [OperationContract]
         string SendMessage(string message);
 
-        /*[OperationContract]
-        void SendMessage(string message, ref string roomstring);*/
-
         [OperationContract]
-        void ReceiveMessage(string message);
+        string ReceiveMessage(string message);
 
     }
 }

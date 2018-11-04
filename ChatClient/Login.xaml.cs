@@ -25,14 +25,24 @@ namespace ChatClient
         {
             InitializeComponent();
         }
-
-        private void SignInButton_Click(object sender, RoutedEventArgs e)
+        private void SignIn()
         {
             user.UserName = UsernameTextBox.Text;
             MainWindow mw = new MainWindow(user);
             mw.Show();
             // Close login screen
             Close();
+        }
+        private void SignInButton_Click(object sender, RoutedEventArgs e)
+        {
+            SignIn();
+        }
+        private void SignInEnterKey(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SignIn();
+            }
         }
     }
 }

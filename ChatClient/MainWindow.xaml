@@ -25,34 +25,37 @@
             Grid.Row="3"
             Height="100"
             Width="450"
-            Text="{Binding Path = message}"
+            Text=""
             VerticalAlignment="Center"
-            HorizontalAlignment="Center" />
+            HorizontalAlignment="Center" 
+            KeyDown="SendEnterKey"
+            />
 
         <Button
             x:Name="SendButton"
-            Grid.Column="3"
+            Grid.Column="2"
             Grid.Row="2"
             Height="40"
             Width="80"
              
             Content="Send"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center" Click="SendButton_Click" 
-            
+            HorizontalAlignment="Center" Click="SendButton_Click" Margin="35,71,35,39" 
             />
 
-        <TextBlock
+        <ScrollViewer Grid.Row="1" Grid.Column="1" 
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto ">
+        <TextBlock           
             x:Name="ChatTextBlock"
             Grid.Row="1"
             Grid.Column="1"
-            Height="280"
+            Height="auto"
             Width="450"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Text="{Binding room.RoomString}"
-            
+            Text=""             
             />
+        </ScrollViewer>
 
         <Label
             Content="Rooms: "
@@ -84,6 +87,18 @@
             HorizontalAlignment="Center"
             
             Margin="35,33,35,27" Grid.Column="2" Click="LogOutButton_Click"
+            
+            />
+        <Label
+            Content="Use enter key or &#xD;&#xA;this button to&#xD;&#xA;send message"
+            Grid.Column="2"
+            Grid.Row="2"
+            FontSize="10"
+            FontWeight="Bold"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            
+            Margin="36,8,24,92" Height="50" Width="90"
             
             />
 
