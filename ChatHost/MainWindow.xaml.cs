@@ -25,7 +25,7 @@ namespace ChatHost
     {
         
         // Step 1 of the address configuration procedure: Create a URI to serve as the base address.
-        static Uri baseAddress = new Uri("http://localhost:8000/ChatProgram/ChatService");
+        static Uri baseAddress = new Uri("http://localhost:8000/ChatProgram/ChatService/ChatHost");
 
         // Step 2 of the hosting procedure: Create ServiceHost
         static ServiceHost selfHost = new ServiceHost(typeof(ChatService), baseAddress);

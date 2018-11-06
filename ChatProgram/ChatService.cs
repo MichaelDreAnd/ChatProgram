@@ -16,8 +16,9 @@ namespace ChatProgram
     UseSynchronizationContext = false)]
     public class ChatService : IChatService
     {
-        private static readonly object syncObj = new object();
-        //Dictionary<Room, IChatServiceDuplexCallback> clients = new Dictionary<Room, IChatServiceDuplexCallback>();
+        //Dictionary to callback messages from each client
+        Dictionary<Room, IChatServiceDuplexCallback> clients =
+             new Dictionary<Room, IChatServiceDuplexCallback>();
         public IChatServiceDuplexCallback Callback
         {
             get
@@ -26,11 +27,22 @@ namespace ChatProgram
             }
         }
 
-        public void SendMessage(Room client)
+        object syncObj = new object();
+        public void SendMessage(Room msg)
         {
             lock (syncObj)
             {
-                Callback.Message(client);
+                clients.Add(msg, Callback);
+                // So the message shown on each client does not repeat more than once
+                if (clients.Count > 2)
+                {
+                    clients.Remove(msg);
+                }
+                
+                foreach (IChatServiceDuplexCallback callback in clients.Values)
+                {
+                    callback.Message(msg);
+                }
             }
         }
 
