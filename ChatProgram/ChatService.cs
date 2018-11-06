@@ -12,23 +12,31 @@ using ChatProgram;
 namespace ChatProgram
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "ChatService" in both code and config file together.
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple,
+    UseSynchronizationContext = false)]
     public class ChatService : IChatService
     {
-        IChatServiceDuplexCallback Callback = null;
-
-        public ChatService()
+        private static readonly object syncObj = new object();
+        //Dictionary<Room, IChatServiceDuplexCallback> clients = new Dictionary<Room, IChatServiceDuplexCallback>();
+        public IChatServiceDuplexCallback Callback
         {
-            Callback = OperationContext.Current.GetCallbackChannel<IChatServiceDuplexCallback>();
+            get
+            {
+                return OperationContext.Current.GetCallbackChannel<IChatServiceDuplexCallback>();
+            }
         }
-        public string SendMessage(string message)
+
+        public void SendMessage(Room client)
         {
-            return message;
+            lock (syncObj)
+            {
+                Callback.Message(client);
+            }
         }
 
-        public string ReceiveMessage(string message)
+        public void ReceiveMessage(string message)
         {
-            return message;
+
         }
 
         public void Connect(string UserName, string IpAdress)
@@ -40,14 +48,6 @@ namespace ChatProgram
         {
             Environment.Exit(1);
         }
-
-        //IChatServiceDuplexCallback Callback
-        //{
-        //    get
-        //    {
-        //        return OperationContext.Current.GetCallbackChannel<IChatServiceDuplexCallback>();
-        //    }
-        //}
     }
 }
 

@@ -15,91 +15,53 @@ namespace ChatClient.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IChatService", CallbackContract=typeof(ChatClient.ServiceReference1.IChatServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IChatService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Connect")]
         void Connect(string UserName, string IpAdress);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/Connect")]
         System.IAsyncResult BeginConnect(string UserName, string IpAdress, System.AsyncCallback callback, object asyncState);
         
         void EndConnect(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Disconnect", ReplyAction="http://tempuri.org/IChatService/DisconnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Disconnect")]
         void Disconnect(string UserName);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/Disconnect", ReplyAction="http://tempuri.org/IChatService/DisconnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/Disconnect")]
         System.IAsyncResult BeginDisconnect(string UserName, System.AsyncCallback callback, object asyncState);
         
         void EndDisconnect(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        string SendMessage(string message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
+        void SendMessage(ChatProgram.Room client);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        System.IAsyncResult BeginSendMessage(string message, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/SendMessage")]
+        System.IAsyncResult BeginSendMessage(ChatProgram.Room client, System.AsyncCallback callback, object asyncState);
         
-        string EndSendMessage(System.IAsyncResult result);
+        void EndSendMessage(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ReceiveMessage", ReplyAction="http://tempuri.org/IChatService/ReceiveMessageResponse")]
-        string ReceiveMessage(string message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/ReceiveMessage")]
+        void ReceiveMessage(string message);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/ReceiveMessage", ReplyAction="http://tempuri.org/IChatService/ReceiveMessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/ReceiveMessage")]
         System.IAsyncResult BeginReceiveMessage(string message, System.AsyncCallback callback, object asyncState);
         
-        string EndReceiveMessage(System.IAsyncResult result);
+        void EndReceiveMessage(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IChatServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Message", ReplyAction="http://tempuri.org/IChatService/MessageResponse")]
-        string Message([System.ServiceModel.MessageParameterAttribute(Name="message")] string message1);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Message")]
+        void Message(ChatProgram.Room client);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/Message", ReplyAction="http://tempuri.org/IChatService/MessageResponse")]
-        System.IAsyncResult BeginMessage(string message, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/Message")]
+        System.IAsyncResult BeginMessage(ChatProgram.Room client, System.AsyncCallback callback, object asyncState);
         
-        string EndMessage(System.IAsyncResult result);
+        void EndMessage(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IChatServiceChannel : ChatClient.ServiceReference1.IChatService, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class SendMessageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public SendMessageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public string Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ReceiveMessageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public ReceiveMessageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public string Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -154,9 +116,9 @@ namespace ChatClient.ServiceReference1 {
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DisconnectCompleted;
         
-        public event System.EventHandler<SendMessageCompletedEventArgs> SendMessageCompleted;
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SendMessageCompleted;
         
-        public event System.EventHandler<ReceiveMessageCompletedEventArgs> ReceiveMessageCompleted;
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> ReceiveMessageCompleted;
         
         public void Connect(string UserName, string IpAdress) {
             base.Channel.Connect(UserName, IpAdress);
@@ -258,43 +220,42 @@ namespace ChatClient.ServiceReference1 {
                         UserName}, this.onEndDisconnectDelegate, this.onDisconnectCompletedDelegate, userState);
         }
         
-        public string SendMessage(string message) {
-            return base.Channel.SendMessage(message);
+        public void SendMessage(ChatProgram.Room client) {
+            base.Channel.SendMessage(client);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginSendMessage(string message, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginSendMessage(message, callback, asyncState);
+        public System.IAsyncResult BeginSendMessage(ChatProgram.Room client, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSendMessage(client, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public string EndSendMessage(System.IAsyncResult result) {
-            return base.Channel.EndSendMessage(result);
+        public void EndSendMessage(System.IAsyncResult result) {
+            base.Channel.EndSendMessage(result);
         }
         
         private System.IAsyncResult OnBeginSendMessage(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string message = ((string)(inValues[0]));
-            return this.BeginSendMessage(message, callback, asyncState);
+            ChatProgram.Room client = ((ChatProgram.Room)(inValues[0]));
+            return this.BeginSendMessage(client, callback, asyncState);
         }
         
         private object[] OnEndSendMessage(System.IAsyncResult result) {
-            string retVal = this.EndSendMessage(result);
-            return new object[] {
-                    retVal};
+            this.EndSendMessage(result);
+            return null;
         }
         
         private void OnSendMessageCompleted(object state) {
             if ((this.SendMessageCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.SendMessageCompleted(this, new SendMessageCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.SendMessageCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void SendMessageAsync(string message) {
-            this.SendMessageAsync(message, null);
+        public void SendMessageAsync(ChatProgram.Room client) {
+            this.SendMessageAsync(client, null);
         }
         
-        public void SendMessageAsync(string message, object userState) {
+        public void SendMessageAsync(ChatProgram.Room client, object userState) {
             if ((this.onBeginSendMessageDelegate == null)) {
                 this.onBeginSendMessageDelegate = new BeginOperationDelegate(this.OnBeginSendMessage);
             }
@@ -305,11 +266,11 @@ namespace ChatClient.ServiceReference1 {
                 this.onSendMessageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendMessageCompleted);
             }
             base.InvokeAsync(this.onBeginSendMessageDelegate, new object[] {
-                        message}, this.onEndSendMessageDelegate, this.onSendMessageCompletedDelegate, userState);
+                        client}, this.onEndSendMessageDelegate, this.onSendMessageCompletedDelegate, userState);
         }
         
-        public string ReceiveMessage(string message) {
-            return base.Channel.ReceiveMessage(message);
+        public void ReceiveMessage(string message) {
+            base.Channel.ReceiveMessage(message);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -318,8 +279,8 @@ namespace ChatClient.ServiceReference1 {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public string EndReceiveMessage(System.IAsyncResult result) {
-            return base.Channel.EndReceiveMessage(result);
+        public void EndReceiveMessage(System.IAsyncResult result) {
+            base.Channel.EndReceiveMessage(result);
         }
         
         private System.IAsyncResult OnBeginReceiveMessage(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -328,15 +289,14 @@ namespace ChatClient.ServiceReference1 {
         }
         
         private object[] OnEndReceiveMessage(System.IAsyncResult result) {
-            string retVal = this.EndReceiveMessage(result);
-            return new object[] {
-                    retVal};
+            this.EndReceiveMessage(result);
+            return null;
         }
         
         private void OnReceiveMessageCompleted(object state) {
             if ((this.ReceiveMessageCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.ReceiveMessageCompleted(this, new ReceiveMessageCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.ReceiveMessageCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
             }
         }
         

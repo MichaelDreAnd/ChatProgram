@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace ChatProgram
 {
     [DataContract]
-    public class Room :  INotifyPropertyChanged
+    public class Room
     {
         private string _message;
     
@@ -22,20 +22,18 @@ namespace ChatProgram
             set
             {
                 _message = value;
-                NotifyPropertyChanged();
             }
         }
+        private string _userName;
 
-        public List<User> UserList { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // This method is called by the Set accessor of each property.  
-        // The CallerMemberName attribute that is applied to the optional propertyName  
-        // parameter causes the property name of the caller to be substituted as an argument.  
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        [DataMember]
+        public string UserName
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get { return _userName; }
+            set
+            {
+                _userName = value;
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ChatClient
     /// </summary>
     public partial class Login : Window
     {
-        User user = new User();
+        Room user = new Room();
         public Login()
         {
             InitializeComponent();

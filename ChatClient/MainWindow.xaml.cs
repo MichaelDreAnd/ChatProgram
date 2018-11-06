@@ -15,35 +15,51 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ChatProgram;
 using System.ServiceModel;
+using System.Windows.Threading;
 
 namespace ChatClient
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IChatServiceDuplexCallback, IChatServiceCallback
     {
         //Step 1: Create an instance of the WCF proxy.   
-        // Create a client, construct InstanceContext to handle messages on callback interface.  
-        ChatServiceClient client = new ChatServiceClient(new InstanceContext(new CallbackHandler()));
+        ChatServiceClient proxy = null;
+        Room localClient = null;
+        private Room user;
 
-        private User user;
-
-        public MainWindow(User user)
+        public MainWindow(Room user)
         {
             InitializeComponent();
-            this.user = user;           
+            this.user = user;
+            WSDualHttpBinding binding = new WSDualHttpBinding();
+            EndpointAddress endptadr = new EndpointAddress("http://localhost:8000/ChatProgram/ChatService");
+            binding.ClientBaseAddress = new Uri("http://localhost:8000/myChatClient/");
+
+            // Create Room instance to store client userName and Message
+            this.localClient = new Room();
+            this.localClient.UserName = user.UserName;
+            this.localClient.Message = ChatTextBlock.Text;
+            
+            //Construct InstanceContext to handle messages on callback interface.
+            InstanceContext context = new InstanceContext(this);
+            proxy = new ChatServiceClient(context);
+            proxy.Open();
         }
 
         private void Send()
         {
-            // Step 2: Call the service operations --> client.SendMessage.
-            ChatTextBlock.Inlines.Add(new Run { Text = user.UserName + ": " + client.SendMessage(MessageTextBox.Text) });
-            // To add a new line each time a message is send
-            ChatTextBlock.Inlines.Add(new LineBreak());
-            // Clears the messagebox
-            MessageTextBox.Text = "";
+            //Create message, assign its properties            
+            Room msg = new ChatProgram.Room
+            {
+                UserName = localClient.UserName.ToString(),
+                Message = MessageTextBox.Text
+            };
+            // Step 2: Call the service operation
+            proxy.SendMessageAsync(msg);
         }
+ 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             Send();
@@ -58,25 +74,32 @@ namespace ChatClient
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             //Step 3: Closing the client gracefully closes the connection and cleans up resources.
-            client.Close();
-            Close();
+            proxy.Close();
+            Close(); 
         }
-    }
-    public class CallbackHandler : IChatServiceCallback
-    {
-        public IAsyncResult BeginMessage(string message, AsyncCallback callback, object asyncState)
+
+        public void Message(Room message)
         {
+            Application.Current.Dispatcher.Invoke(new Action(
+              () => ChatTextBlock.Text = message.UserName + ": " + message.Message));
+            // Show message on UI
+            //ChatTextBlock.Inlines.Add(new Run { Text = message.UserName + ": " + message.Message });
+            // To add a new line each time a message is send
+            ChatTextBlock.Inlines.Add(new LineBreak());
+            // Clears the messagebox
+            MessageTextBox.Text = "";
+        }
+
+        public IAsyncResult BeginMessage(Room client, AsyncCallback callback, object asyncState)
+        {
+            //From IChatServiceCallback, has to be there or else the proxy InstanceContext won't work
             throw new NotImplementedException();
         }
 
-        public string EndMessage(IAsyncResult result)
+        public void EndMessage(IAsyncResult result)
         {
+            //From IChatServiceCallback, has to be there or else the proxy InstanceContext won't work
             throw new NotImplementedException();
-        }
-
-        public string Message(string message)
-        {
-            return message;
         }
     }
 }
