@@ -37,6 +37,7 @@ namespace ChatClient
         {
             InitializeComponent();
             this.user = user;
+            User_label.Content = "User: " + user.UserName;
             WSDualHttpBinding binding = new WSDualHttpBinding();
             EndpointAddress endptadr = new EndpointAddress("http://localhost:8000/ChatProgram/ChatService/ChatHost");
             binding.ClientBaseAddress = new Uri("http://localhost:8000/myChatClient/");
